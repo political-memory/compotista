@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'representatives',
     'parltrack_meps',
+    'parltrack_meps_to_representatives',
 )
 
 # A sample logging configuration. The only tangible logging
