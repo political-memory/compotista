@@ -1,0 +1,3 @@
+git+git://github.com/Psycojoker/django-parltrack-meps.git
+git+git://github.com/Psycojoker/django-parltrack-meps-to-representatives.git
+git+git://github.com/yohanboniface/django-representatives.git
