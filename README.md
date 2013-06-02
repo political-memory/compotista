@@ -9,3 +9,6 @@ For dev:
     ln -s ../django-representatives/representatives/ .
     ln -s ../django-parltrack-meps/parltrack_meps/ .
     ln -s ../django-parltrack-meps-to-representatives/parltrack_meps_to_representatives/ .
+
+    python manage.py syncdb
+    python manage.py update_meps
