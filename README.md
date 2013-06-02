@@ -12,3 +12,7 @@ For dev:
 
     python manage.py syncdb
     python manage.py update_meps
+
+To run the conversion:
+
+    python manage.py convert_meps_to_representatives
