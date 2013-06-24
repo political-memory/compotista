@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'representatives',
     'parltrack_meps',
     'parltrack_meps_to_representatives',
+    'exported_data',
 )
 
 # A sample logging configuration. The only tangible logging
