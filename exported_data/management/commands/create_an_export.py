@@ -14,8 +14,16 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         data = json.dumps(export_all_representatives(), indent=4)
-        ExportedRevision.objects.create(
-            data=data,
-            checksum=hashlib.sha256(data).hexdigest(),
-            datetime=datetime.now()
-        )
+        checksum = hashlib.sha256(data).hexdigest()
+        exported_revision = ExportedRevision.objects.filter(checksum=checksum)
+        if exported_revision:
+            exported_revision = exported_revision[0]
+            exported_revision.last_check_datetime = datetime.now()
+            exported_revision.save()
+        else:
+            ExportedRevision.objects.create(
+                data=data,
+                checksum=hashlib.sha256(data).hexdigest(),
+                creation_datetime=datetime.now(),
+                last_check_datetime=datetime.now()
+            )
