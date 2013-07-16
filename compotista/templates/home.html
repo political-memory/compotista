@@ -10,11 +10,23 @@
 
         <p>If you aren't interested in those data and/or aren't using a lib/application that is implementing the "representatives" format, this website won't have a lot of interest for you.</p>
 
-        <p><b>Data:</b></p>
+        <h2>Data</h2>
         <ul>
-            <li><a href="/latest/">Latest json dump of representatives dump</a></li>
+            <li><a href="/latest/">Latest json dump of representatives dump</a> <b>Warning:</b> this is quite big so expect some slowdown if you try to open this in your browser</li>
             <li><a href="/latest/checksum/">Checksum of the data</a></li>
         </ul>
+
+        <h2>API</h2>
+
+        <p>If you want more fingrain access to the dumps and their meta data, you can access all of the via a <a href="http://django-tastypie.readthedocs.org/en/latest/">tastypie</a> API.</p>
+
+        <p><b>Warning:</b> those data is quite big so expect some slowdown if you try to open them in your browser.</p>
+
+        <p>The API is accessible at this url: <code>http://{{ request.META.SERVER_NAME }}/api/exported_revision/?format=json</code></p>
+
+        <p>Sample usage: <code>curl http://{{ request.META.SERVER_NAME }}/api/exported_revision/?format=json | python -m json.tool</code></p>
+
+        <hr/>
 
         <p>Compotista is free software under the aGPLv3+. <a href="https://github.com/Psycojoker/compotista">Source code</a></p>
 
