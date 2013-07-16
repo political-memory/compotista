@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'parltrack_meps',
     'parltrack_meps_to_representatives',
     'exported_data',
+    'compotista',
 )
 
 # A sample logging configuration. The only tangible logging

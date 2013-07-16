@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic import TemplateView
+
 from exported_data.api import ExportedRevisionResource
 
 # Uncomment the next two lines to enable the admin:
@@ -15,5 +17,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', TemplateView.as_view(template_name="home.html")),
     url(r'^api/', include(ExportedRevisionResource().urls)),
 )
