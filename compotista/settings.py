@@ -157,6 +157,9 @@ LOGGING = {
     }
 }
 
+# Django 1.7 Test runner
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
 try:
     from settings_local import *
 except ImportError:
