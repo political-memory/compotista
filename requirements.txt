@@ -1,3 +1,3 @@
-django>1.5
-django-tastypie
-mimeparse
+django>=1.7,<1.8
+django-tastypie==0.12.1
+ijson
