@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', TemplateView.as_view(template_name="home.html")),
     url(r'^latest/$', get_lastest_data),
+    url(r'^latest/(?P<kind>\w+)/$', get_lastest_data),
     url(r'^latest/checksum/$', get_lastest_checksum),
+    url(r'^latest/(?P<kind>\w+)/checksum/$', get_lastest_checksum),
     url(r'^api/', include(ExportedRevisionResource().urls)),
 )
