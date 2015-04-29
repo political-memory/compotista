@@ -22,12 +22,12 @@
 
         <p><b>Warning:</b> those data is quite big so expect some slowdown if you try to open them in your browser.</p>
 
-        <p>The API is accessible at this url: <code>http://{{ request.META.SERVER_NAME }}/api/exported_revision/?format=json</code></p>
+        <p>The API is accessible at this url: <code>http://{{ request.META.HTTP_HOST }}/api/exported_revision/?format=json</code></p>
 
-        <p>Sample usage: <code>curl http://{{ request.META.SERVER_NAME }}/api/exported_revision/?format=json | python -m json.tool</code></p>
+        <p>Sample usage: <code>curl http://{{ request.META.HTTP_HOST }}/api/exported_revision/?format=json | python -m json.tool</code></p>
 
-        <hr/>
-
+        <hr>
+        
         <p>Compotista is free software under the aGPLv3+. <a href="https://github.com/Psycojoker/compotista">Source code</a></p>
 
         <p><small><i>Garlandus Compotista was a Belgium logician.</i></small></p>
