@@ -1,5 +1,3 @@
 *.pyc
 *.sqlite
-parltrack_meps
-parltrack_meps_to_representatives
-representatives
+import_*
