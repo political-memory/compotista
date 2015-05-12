@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.core.management.base import BaseCommand
 
 from representatives.utils import export_all_representatives, export_active_representatives
-from exported_data.models import ExportedRevision
+from export_data.models import ExportedRevision
 
 class Command(BaseCommand):
     args = '<poll_id poll_id ...>'

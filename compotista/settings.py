@@ -122,7 +122,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'representatives',
-    'exported_data',
+    'export_data',
     # Import modules
     'import_parltrack',
     'compotista',
