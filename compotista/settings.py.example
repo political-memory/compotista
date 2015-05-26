@@ -101,7 +101,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'jai:kuph7quaikooNgohy2hie6ma5gi0ou0fieTh9Piesaij+aebai.Phief"aithee7echieThaeH:eebah0oY,oo1kahsheegh'
+SECRET_KEY = 'ieyi2Gab9aht2cheerai8bohfat=ie7wu4Zo\Te\phoh=Ngie\foo+Riech/ie2eTho#Mooni5arah1Aozahy*ieShi\quao.nae'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -147,7 +147,7 @@ INSTALLED_APPS = (
     'representatives',
     'export_data',
     # Import modules
-    'import_parltrack',
+    'import_parltrack_representatives',
     'compotista',
 )
 
