@@ -1,5 +1,26 @@
 # Django settings for compotista project.
 
+# This file is part of compotista.
+#
+# compotista is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of
+# the License, or any later version.
+#
+# compotista is distributed in the hope that it will
+# be useful, but WITHOUT ANY WARRANTY; without even the implied
+# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU General Affero Public
+# License along with Foobar.
+# If not, see <http://www.gnu.org/licenses/>.
+#
+# Copyright (C) 2013 Laurent Peuch <cortex@worlddomination.be>
+# Copyright (C) 2015 Arnaud Fabre <af@laquadrature.net>
+
+# coding: utf-8
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -26,7 +47,7 @@ DATABASES = {
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Brussels'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -80,7 +101,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '=e^%c=5q4&amp;pct-st94cthubt*%i#+1qp3b!=x^)cuovwzr*tw&amp;'
+SECRET_KEY = 'jai:kuph7quaikooNgohy2hie6ma5gi0ou0fieTh9Piesaij+aebai.Phief"aithee7echieThaeH:eebah0oY,oo1kahsheegh'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (

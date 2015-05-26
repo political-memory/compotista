@@ -1,3 +1,4 @@
 *.pyc
 *.sqlite
 import_*
+compotista/settings.py.example
