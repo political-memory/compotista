@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # This file is part of compotista.
 #
 # compotista is free software: you can redistribute it and/or modify
@@ -17,7 +19,6 @@
 # Copyright (C) 2013 Laurent Peuch <cortex@worlddomination.be>
 # Copyright (C) 2015 Arnaud Fabre <af@laquadrature.net>
 
-# coding: utf-8
 
 from django.db import models
 
@@ -26,7 +27,7 @@ class ExportedRevision(models.Model):
     checksum = models.CharField(max_length=255, unique=True)
     creation_datetime = models.DateTimeField()
     last_check_datetime = models.DateTimeField()
-    
+
     kind = models.CharField(max_length=128, null=True)
 
     class Meta:

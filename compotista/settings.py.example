@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # Django settings for compotista project.
 
 # This file is part of compotista.
@@ -18,8 +20,6 @@
 #
 # Copyright (C) 2013 Laurent Peuch <cortex@worlddomination.be>
 # Copyright (C) 2015 Arnaud Fabre <af@laquadrature.net>
-
-# coding: utf-8
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
