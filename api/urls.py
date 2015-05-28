@@ -30,6 +30,5 @@ router.register(r'mandates', views.MandateViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
