@@ -16,18 +16,20 @@
 # License along with compotista.
 # If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright (C) 2013 Laurent Peuch <cortex@worlddomination.be>
 # Copyright (C) 2015 Arnaud Fabre <af@laquadrature.net>
 
-from django.conf.urls import patterns, url, include
+from django.conf.urls import url, include
+from rest_framework import routers
+from api import views
 
-from tastypie.api import Api
-from api import MandateRessource, RepresentativeRessource
+router = routers.DefaultRouter()
+router.register(r'representatives', views.RepresentativeViewSet)
+router.register(r'mandates', views.MandateViewSet)
 
-v1_api = Api(api_name='v1')
-v1_api.register(MandateRessource())
-v1_api.register(RepresentativeRessource())
+# Wire up our API using automatic URL routing.
 
-urlpatterns = patterns('',
-    url(r'^', include(v1_api.urls)),
-)
+urlpatterns = [
+    url(r'^', include(router.urls)),
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+]
+

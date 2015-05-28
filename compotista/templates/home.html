@@ -15,16 +15,24 @@
             <li><a href="/export/latest/">Latest json dump of representatives dump</a> <b>Warning:</b> this is quite big so expect some slowdown if you try to open this in your browser</li>
             <li><a href="/export/latest/checksum/">Checksum of the data</a></li>
         </ul>
+        <ul>
+          <li>
+            <a href="/export/latest/active">Latest json dump of <strong>active</strong> representatives dump</a>
+            <b>Warning:</b> this is quite big so expect some slowdown if you try to open this in your browser</li>
+            <li><a href="/export/latest/active/checksum/">Checksum of the data</a></li>
+        </ul>
 
         <h2>API</h2>
 
-        <p>If you want more fingrain access to the dumps and their meta data, you can access all of the via a <a href="http://django-tastypie.readthedocs.org/en/latest/">tastypie</a> API.</p>
+        <p>If you want more fingrain access to the dumps and their meta data, you can access all of the via a <a href="http://www.django-rest-framework.org">Django-Rest-Framework</a> API.</p>
 
         <p><b>Warning:</b> those data is quite big so expect some slowdown if you try to open them in your browser.</p>
 
-        <p>The API is accessible at this url: <code>http://{{ request.META.HTTP_HOST }}/api/exported_revision/?format=json</code></p>
-
-        <p>Sample usage: <code>curl http://{{ request.META.HTTP_HOST }}/api/exported_revision/?format=json | python -m json.tool</code></p>
+        <p>The API is accessible (and browsable) at this url:
+          <a href="http://{{ request.META.HTTP_HOST }}/api">
+            <code>http://{{ request.META.HTTP_HOST }}/api</code>
+          </a>
+        </p>
 
         <hr>
         
