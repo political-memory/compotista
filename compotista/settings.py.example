@@ -143,7 +143,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     # Tastypie is for API
-    'tastypie',
+    'rest_framework',
     'representatives',
     'export_data',
     # Import modules
@@ -178,6 +178,12 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+    'PAGE_SIZE': 10
 }
 
 # Django 1.7 Test runner
