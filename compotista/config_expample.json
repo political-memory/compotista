@@ -1,0 +1,12 @@
+{
+    'compotista_server': '',
+    'toutatis_server': '',
+    'debug': true,
+    'database_server': 'mysql', // or postgresql
+    'database_host': '',
+    'database_port': '',
+    'database_password': '',
+    'database_user': '',
+    'database_name': '',
+    'secret_key': '',
+}
