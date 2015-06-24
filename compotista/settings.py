@@ -27,7 +27,7 @@ import json
 from django.core.exceptions import ImproperlyConfigured
 
 
-with open("config.json") as f:
+with open("compotista/config.json") as f:
     config = json.loads(f.read())
 
 
@@ -40,7 +40,6 @@ def get_param(setting, config=config, default=None):
             return default
         error_msg = "Set the {0} config variable".format(setting)
         raise ImproperlyConfigured(error_msg)
-
 
 
 COMPOTISTA_SERVER = get_param('compotista_server')
@@ -176,7 +175,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     # Django - Rest - Framework
     'rest_framework',
-    'memopol_utils',
     'representatives',
     'export_data',
     # Import modules
