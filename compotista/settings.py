@@ -15,13 +15,37 @@
 # See the GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU General Affero Public
-# License along with Foobar.
+# License along with compotista.
 # If not, see <http://www.gnu.org/licenses/>.
 #
 # Copyright (C) 2013 Laurent Peuch <cortex@worlddomination.be>
 # Copyright (C) 2015 Arnaud Fabre <af@laquadrature.net>
 
-DEBUG = True
+import json
+# Normally you should not import ANYTHING from Django directly
+# into your settings, but ImproperlyConfigured is an exception.
+from django.core.exceptions import ImproperlyConfigured
+
+
+with open("compotista/config.json") as f:
+    config = json.loads(f.read())
+
+
+def get_param(setting, config=config, default=None):
+    """Get the secret variable or return explicit exception."""
+    try:
+        return config[setting]
+    except KeyError:
+        if default:
+            return default
+        error_msg = "Set the {0} config variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+
+COMPOTISTA_SERVER = get_param('compotista_server')
+TOUTATIS_SERVER = get_param('toutatis_server')
+
+DEBUG = get_param('debug')
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -32,26 +56,33 @@ ALLOWED_HOSTS = ['*']
 
 MANAGERS = ADMINS
 
+if not get_param('database_server') in ('mysql', 'postgresql'):
+    raise ImproperlyConfigured('Compotista only support mysql or postgresql')
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'db.sqlite',                    # Or path to database file if using sqlite3.
-        'USER': '',                             # Not used with sqlite3.
-        'PASSWORD': '',                         # Not used with sqlite3.
-        'HOST': '',                             # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                             # Set to empty string for default. Not used with sqlite3.
+        'NAME': get_param('database_name'),
+        'USER': get_param('database_user'),
+        'PASSWORD': get_param('database_password'),
+        'HOST': get_param('database_host'),
+        'PORT': get_param('database_port'),
     }
 }
+
+if get_param('database_server') == 'mysql':
+    DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+elif get_param('database_server') == 'postgresql':
+    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'Europe/Brussels'
+TIME_ZONE = get_param('time_zone', default='Europe/Brussels')
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = get_param('language_code', default='en-us')
 
 SITE_ID = 1
 
@@ -101,7 +132,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'ieyi2Gab9aht2cheerai8bohfat=ie7wu4Zo\Te\phoh=Ngie\foo+Riech/ie2eTho#Mooni5arah1Aozahy*ieShi\quao.nae'
+SECRET_KEY = get_param('secret_key')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -142,7 +173,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    # Tastypie is for API
+    # Django - Rest - Framework
     'rest_framework',
     'representatives',
     'export_data',
@@ -179,6 +210,8 @@ LOGGING = {
         },
     }
 }
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',

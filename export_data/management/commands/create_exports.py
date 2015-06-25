@@ -25,14 +25,16 @@ import hashlib
 from django.utils import timezone
 from django.core.management.base import BaseCommand
 
-from representatives.utils import export_all_representatives, export_active_representatives
+from representatives.tasks import export_representatives
 from export_data.models import ExportedRevision
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        self.create_export(json.dumps(export_all_representatives(), indent=4))
-        self.create_export(json.dumps(export_active_representatives(), indent=4), 'active')
+        self.create_export(json.dumps(
+            export_representatives(), indent=4))
+        self.create_export(json.dumps(
+            export_representatives(active=True), indent=4), 'active')
 
     def create_export(self, data, kind=None):
         checksum = hashlib.sha256(data).hexdigest()
