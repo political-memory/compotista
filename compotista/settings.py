@@ -22,14 +22,15 @@
 # Copyright (C) 2015 Arnaud Fabre <af@laquadrature.net>
 
 import json
+import os
 # Normally you should not import ANYTHING from Django directly
 # into your settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
 
+config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.json')
 
-with open("compotista/config.json") as f:
+with open(config_file) as f:
     config = json.loads(f.read())
-
 
 def get_param(setting, config=config, default=None):
     """Get the secret variable or return explicit exception."""
@@ -47,6 +48,8 @@ TOUTATIS_SERVER = get_param('toutatis_server')
 
 DEBUG = get_param('debug')
 TEMPLATE_DEBUG = DEBUG
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
