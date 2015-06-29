@@ -2,3 +2,6 @@
 *.sqlite
 import_*
 compotista/config.json
+celerybeat-schedule
+var/*
+!var/.gitkeep
