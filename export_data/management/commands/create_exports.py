@@ -19,39 +19,39 @@
 # Copyright (C) 2013 Laurent Peuch <cortex@worlddomination.be>
 # Copyright (C) 2015 Arnaud Fabre <af@laquadrature.net>
 
-import json
-import hashlib
+from __future__ import absolute_import
 
-from django.utils import timezone
+import os
+
 from django.core.management.base import BaseCommand
+from django.conf import settings
 
-from representatives.tasks import export_representatives
+from export_data.tasks import create_exports
 from export_data.models import ExportedRevision
 
 class Command(BaseCommand):
 
+    def add_arguments(self, parser):
+        parser.add_argument('--clean', action='store_true', default=False)
+        parser.add_argument('--celery', action='store_true', default=False)
+
     def handle(self, *args, **options):
-        self.create_export(json.dumps(
-            export_representatives(), indent=4))
-        self.create_export(json.dumps(
-            export_representatives(active=True), indent=4), 'active')
+        if options['clean']:
+            self.clean()
+            return
 
-    def create_export(self, data, kind=None):
-        checksum = hashlib.sha256(data).hexdigest()
-        exported_revision = ExportedRevision.objects.filter(checksum=checksum)
-
-        now = timezone.now()
-
-        if exported_revision:
-            exported_revision = exported_revision[0]
-            exported_revision.last_check_datetime = now
-            exported_revision.kind = kind
-            exported_revision.save()
+        if options['celery']:
+            create_exports.delay()
         else:
-            ExportedRevision.objects.create(
-                data=data,
-                kind=kind,
-                checksum=hashlib.sha256(data).hexdigest(),
-                creation_datetime=now,
-                last_check_datetime=now
-            )
+            create_exports()
+
+    def clean(self):
+        ExportedRevision.objects.all().delete()
+        folder = os.path.join(settings.PROJECT_ROOT, 'var')
+        for the_file in os.listdir(folder):
+            file_path = os.path.join(folder, the_file)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            except Exception, e:
+                print e
