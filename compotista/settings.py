@@ -45,6 +45,7 @@ def get_param(setting, config=config, default=None):
 
 COMPOTISTA_SERVER = get_param('compotista_server')
 TOUTATIS_SERVER = get_param('toutatis_server')
+REDIS_DB = get_param('redis_db')
 
 DEBUG = get_param('debug')
 TEMPLATE_DEBUG = DEBUG
