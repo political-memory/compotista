@@ -25,6 +25,10 @@ from api import views
 router = routers.DefaultRouter()
 router.register(r'representatives', views.RepresentativeViewSet)
 router.register(r'mandates', views.MandateViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'constituencies', views.ConstituencyViewSet)
+# router.register(r'representatives_full', views.RepresentativeFullViewSet)
+
 
 # Wire up our API using automatic URL routing.
 
