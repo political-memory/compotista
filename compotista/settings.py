@@ -60,8 +60,10 @@ ALLOWED_HOSTS = ['*']
 
 MANAGERS = ADMINS
 
-if not get_param('database_server') in ('mysql', 'postgresql'):
-    raise ImproperlyConfigured('Compotista only support mysql or postgresql')
+# This was probably required, but I intend to fix sqlite support if required.
+# When CI will be up, we'll know. Until then, commenting
+#if not get_param('database_server') in ('mysql', 'postgresql'):
+#    raise ImproperlyConfigured('Compotista only support mysql or postgresql')
 
 DATABASES = {
     'default': {
@@ -73,7 +75,9 @@ DATABASES = {
     }
 }
 
-if get_param('database_server') == 'mysql':
+if get_param('local'):
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+elif get_param('database_server') == 'mysql':
     DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 elif get_param('database_server') == 'postgresql':
     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'

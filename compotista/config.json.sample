@@ -1,0 +1,15 @@
+{
+    "compotista_server": "",
+    "toutatis_server": "",
+    "dev_modules": [],
+    "debug": true,
+    "database_server": "mysql",
+    "database_host": "",
+    "database_port": "",
+    "database_password": "",
+    "database_user": "",
+    "database_name": "db.sqlite",
+    "local": true,
+    "secret_key": "notsecret",
+    "redis_db": 1
+}
