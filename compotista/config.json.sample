@@ -1,14 +1,15 @@
 {
+    "compotista_server": "",
+    "toutatis_server": "",
+    "dev_modules": [],
     "debug": true,
-    "secret_key": "notsecret",
-    "compotista_server": "http://compotista.dev.laquadrature.net/",
-    "toutatis_server": "http://toutatis.dev.laquadrature.net/",
-    "redis_db": 0,
-    "organization": "local",
-    "local": true,
-    "database_name": "db.sqlite",
-    "database_user": "",
-    "database_password": "",
+    "database_server": "mysql",
     "database_host": "",
-    "database_port": ""
+    "database_port": "",
+    "database_password": "",
+    "database_user": "",
+    "database_name": "db.sqlite",
+    "local": true,
+    "secret_key": "notsecret",
+    "redis_db": 1
 }
