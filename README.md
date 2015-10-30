@@ -1,3 +1,7 @@
+# OLD MASTER
+
+This is the master branch as i got it from @psycojoker
+
 For dev:
 
     git clone git@github.com:Psycojoker/compotista.git
