@@ -27,27 +27,34 @@ import os
 # into your settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
 
+DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', None)
+LOG_DIR = os.environ.get('OPENSHIFT_LOG_DIR', None)
+PUBLIC_DIR = os.path.join(os.environ.get('OPENSHIFT_REPO_DIR', ''), 'wsgi/static')
+
 config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.json')
 
-with open(config_file) as f:
-    config = json.loads(f.read())
+if os.path.isfile(config_file):
+    with open(config_file) as f:
+        config = json.loads(f.read())
 
-def get_param(setting, config=config, default=None):
-    """Get the secret variable or return explicit exception."""
-    try:
-        return config[setting]
-    except KeyError:
-        if default:
-            return default
-        error_msg = "Set the {0} config variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
+    def get_param(setting, config=config, default=None):
+        """Get the secret variable or return explicit exception."""
+        try:
+            return config[setting]
+        except KeyError:
+            if default is not None:
+                return default
+            error_msg = "Set the {0} config variable".format(setting)
+            raise ImproperlyConfigured(error_msg)
+else:
+    def get_param(setting, default=None):
+        return os.environ.get(setting.upper(), default)
 
+COMPOTISTA_SERVER = get_param('compotista_server', default='http://example.com')
+TOUTATIS_SERVER = get_param('toutatis_server', default='')
+REDIS_DB = get_param('redis_db', default=9)
 
-COMPOTISTA_SERVER = get_param('compotista_server')
-TOUTATIS_SERVER = get_param('toutatis_server')
-REDIS_DB = get_param('redis_db')
-
-DEBUG = get_param('debug')
+DEBUG = get_param('debug', default=False)
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -67,20 +74,25 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'NAME': get_param('database_name'),
-        'USER': get_param('database_user'),
-        'PASSWORD': get_param('database_password'),
-        'HOST': get_param('database_host'),
-        'PORT': get_param('database_port'),
+        'NAME': get_param('database_name', default='db.sqlite'),
+        'USER': get_param('database_user', default=''),
+        'PASSWORD': get_param('database_password', default=''),
+        'HOST': get_param('database_host', default=''),
+        'PORT': get_param('database_port', default=''),
+        'ENGINE': 'django.db.backends.sqlite3',
     }
 }
 
-if get_param('local'):
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-elif get_param('database_server') == 'mysql':
-    DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-elif get_param('database_server') == 'postgresql':
-    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+if DATA_DIR:
+    DATABASES['default']['NAME'] = os.path.join(DATA_DIR, 'db.sqlite3')
+
+try:
+    if get_param('database_server') == 'mysql':
+        DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+    elif get_param('database_server') == 'postgresql':
+        DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+except ImproperlyConfigured:
+    pass
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -130,6 +142,14 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+if DATA_DIR:
+    MEDIA_URL = '/static/media/'
+    MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
+
+if PUBLIC_DIR:
+    STATIC_URL = '/static/collected/'
+    STATIC_ROOT = os.path.join(PUBLIC_DIR, 'collected')
 
 # List of finder classes that know how to find static files in
 # various locations.

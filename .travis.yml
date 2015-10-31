@@ -1,11 +1,21 @@
 sudo: false
 language: python
 python:
-  - "2.7"
+- '2.7'
 install:
-  - pip install django
-  - pip install -U pip
-  - pip install -r requirements.txt
-  - cp compotista/config.json.sample compotista/config.json
+- pip install django
+- pip install -U pip
+- pip install -r requirements.txt
+- cp compotista/config.json.sample compotista/config.json
 script:
-  - ./manage.py migrate
+- "./manage.py migrate"
+deploy:
+  provider: openshift
+  user: jamespic@gmail.com
+  password:
+    secure: f1Dwz++D9IiQdNsKjx7ZdxnONUqXDAoNLDrF8pCCH/5PVkI53TADLhLnAEZuVhGSmfHhmEgBkHeXarxd2fotnCBTrG47wKDAy6LKxBRksI9jOvU4LBiYxQrV+qdduYOP8HjOTtZMCZkql+ADl00m8YbaK7SdvkfM6EIbBzmwJg0=
+  app: compotista
+  domain: lqdn
+  on:
+    repo: political-memory/compotista
+    branch: master

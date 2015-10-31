@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eux
+
+source ${OPENSHIFT_HOMEDIR}app-root/runtime/dependencies/python/virtenv/bin/activate
+
+python ${OPENSHIFT_REPO_DIR}manage.py import_parltrack_representatives

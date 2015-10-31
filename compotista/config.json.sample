@@ -3,7 +3,7 @@
     "toutatis_server": "",
     "dev_modules": [],
     "debug": true,
-    "database_server": "mysql",
+    "database_server": "sqlite3",
     "database_host": "",
     "database_port": "",
     "database_password": "",
