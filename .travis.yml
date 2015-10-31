@@ -6,5 +6,6 @@ install:
   - pip install django
   - pip install -U pip
   - pip install -r requirements.txt
+  - cp compotista/config.json.sample compotista/config.json
 script:
   - ./manage.py migrate
