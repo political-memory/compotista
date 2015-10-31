@@ -1,0 +1,11 @@
+sudo: false
+language: python
+python:
+  - "2.7"
+install:
+  - pip install django
+  - pip install -U pip
+  - pip install -r requirements.txt
+  - cp compotista/config.json.sample compotista/config.json
+script:
+  - ./manage.py migrate

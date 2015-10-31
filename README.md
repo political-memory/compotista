@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/political-memory/compotista.svg?branch=travis)](https://travis-ci.org/political-memory/compotista)
 ```
 cd /tmp
 virtualenv compotista_example
