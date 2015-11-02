@@ -5,3 +5,4 @@ compotista/config.json
 celerybeat-schedule
 var/*
 !var/.gitkeep
+docs/_build
