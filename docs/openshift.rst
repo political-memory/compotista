@@ -20,7 +20,15 @@ the master branch with redis and cron cartridges::
 
 Then, either wait for the daily cron to import data, either run it manually::
 
+    # Feel free to look around, use the find command and all to explore the
+    # container, there are logs for everything.
     rhc ssh -a compo
+
+    # Let's run this command in a tmux session in case our ssh connection goes
+    # down
+    TERM=xterm tmux
+
+    # Force execution of the daily cron.
     cron/bin/cron_runjobs.sh daily
 
 Then, to deploy a specific ref - which should be on the repo specified with
