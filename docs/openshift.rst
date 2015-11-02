@@ -10,7 +10,8 @@ from the master branch with redis and cron cartridges::
         cron-1.4 \
         -n lqdn \
         --from-code https://github.com/political-memory/compotista.git \
-        -a compotista
+        -a compotista \
+        -e SECRET_KEY=$(openssl rand -base64 32)
 
 Then, either wait for the daily cron to import data, either run it manually::
 
