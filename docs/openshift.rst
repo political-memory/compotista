@@ -11,7 +11,8 @@ from the master branch with redis and cron cartridges::
         -n lqdn \
         --from-code https://github.com/political-memory/compotista.git \
         -a compotista \
-        -e SECRET_KEY=$(openssl rand -base64 32)
+        -e SECRET_KEY=$(openssl rand -base64 32) \
+        -e OPENSHIFT_PYTHON_WSGI_APPLICATION=compotista/wsgi.py
 
 Then, either wait for the daily cron to import data, either run it manually::
 
