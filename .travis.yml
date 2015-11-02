@@ -17,7 +17,7 @@ deploy:
   user: jamespic@gmail.com
   password:
     secure: f1Dwz++D9IiQdNsKjx7ZdxnONUqXDAoNLDrF8pCCH/5PVkI53TADLhLnAEZuVhGSmfHhmEgBkHeXarxd2fotnCBTrG47wKDAy6LKxBRksI9jOvU4LBiYxQrV+qdduYOP8HjOTtZMCZkql+ADl00m8YbaK7SdvkfM6EIbBzmwJg0=
-  app: compotista
+  app: com
   domain: lqdn
   on:
     repo: political-memory/compotista
