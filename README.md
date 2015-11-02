@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/political-memory/compotista.svg?branch=travis)](https://travis-ci.org/political-memory/compotista)
+[![Documentation Status](https://readthedocs.org/projects/compotista/badge/?version=latest)](http://compotista.readthedocs.org/en/latest/?badge=latest)
 ```
 cd /tmp
 virtualenv compotista_example
